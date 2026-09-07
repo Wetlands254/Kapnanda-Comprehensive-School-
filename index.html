@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kapnanda Comprehensive School Management System</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="logo">K</div><div><b>Kapnanda</b><small>Comprehensive School</small></div></div>
+  <div class="open-badge">● NO PASSWORD</div>
+  <nav id="nav"></nav>
+  <div class="side-note">Shared cloud workspace<br><span>Changes made on one phone can be seen by other phones.</span></div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <button class="menu" onclick="toggleMenu()">☰</button>
+  <div><h1 id="pageTitle">Dashboard</h1><p id="pageSub">School overview</p></div>
+  <div class="top-actions"><span id="syncState">Connecting…</span><button class="btn light" onclick="exportBackup()">Backup</button></div>
+</header>
+<section id="content"></section>
+</main>
+</div>
+<div id="modal" class="modal hidden"><div class="modal-box"><div class="modal-head"><h2 id="modalTitle"></h2><button class="close" onclick="closeModal()">×</button></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body></html>
