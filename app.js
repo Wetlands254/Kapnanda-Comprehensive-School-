@@ -4,8 +4,8 @@ const CLOUD_KEY="kapnanda_supabase_config_v1";
 // Default Supabase connection. The publishable/anon key is safe for browser use
 // when Row Level Security (RLS) is correctly configured. NEVER put a service-role key here.
 const DEFAULT_SUPABASE_CONFIG={
-  url:"https://ekpgmcyfwibgvpqccsfy.supabase.co",
-  anonKey:"sb_publishable_-gWNnPJDlA8TrAJmQo6h5g_KPbjIiep"
+  url:"https://nrxstipepaevthkeuxoh.supabase.co",
+  anonKey:"sb_publishable_nk1h83XRYa-NdZKhgZfsig__0xG8CdM"
 };
 const SHARED_STATE_ID="KAPNANDA";
 let cloud=null, cloudReady=false, cloudUser=null, cloudSyncBusy=false, cloudSavePending=false;
