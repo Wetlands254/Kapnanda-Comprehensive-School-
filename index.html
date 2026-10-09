@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Kapnanda Primary & Junior School • Smart Management System</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="login" class="login">
+  <div class="loginbox">
+
+    <div class="logo">K</div>
+
+    <h1>Kapnanda Primary and Junior School</h1>
+    <p>School Management System</p>
+
+    <div class="field">
+      <label for="loginUser">Email</label>
+      <input
+        id="loginUser"
+        type="email"
+        placeholder="admin@example.com"
+        autocomplete="username"
+      >
+    </div>
+
+    <div class="field" style="margin-top:12px">
+      <label for="loginPass">Password</label>
+      <input
+        id="loginPass"
+        type="password"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+      >
+    </div>
+
+    <button
+      class="login-submit"
+      id="loginButton"
+      style="width:100%;margin-top:16px"
+      onclick="login()"
+    >
+      Sign In
+    </button>
+
+    <button
+      class="light"
+      style="width:100%;margin-top:9px"
+      onclick="forgot()"
+    >
+      Forgot Password?
+    </button>
+
+    <small
+      id="loginMode"
+      style="display:block;text-align:center;color:#64748b;margin-top:14px"
+    >
+      Secure Supabase login • Shared school database
+    </small>
+
+    <div
+      id="loginError"
+      style="
+        display:none;
+        margin-top:12px;
+        padding:10px;
+        border-radius:8px;
+        background:#fee2e2;
+        color:#991b1b;
+        font-size:14px;
+      "
+    ></div>
+
+  </div>
+</div>
+
+
+<!-- ================= APPLICATION ================= -->
+
+<div id="app" class="app hidden">
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      KAPNANDA PRIMARY & JUNIOR SCHOOL
+      <small>School Management System</small>
+    </div>
+
+    <div class="sectiontag">Main</div>
+
+    <div class="nav">
+      <button data-page="Dashboard" onclick="show('Dashboard')">
+        🏠 Dashboard
+      </button>
+
+      <button data-page="Learners" onclick="show('Learners')">
+        👨‍🎓 Learners
+      </button>
+
+      <button data-page="Teachers" onclick="show('Teachers')">
+        👩‍🏫 Teachers
+      </button>
+    </div>
+
+
+    <div class="sectiontag">Academic</div>
+
+    <div class="nav">
+      <button data-page="Marks" onclick="show('Marks')">
+        ✏️ Marks
+      </button>
+
+      <button data-page="Rankings" onclick="show('Rankings')">
+        🏆 Rankings
+      </button>
+
+      <button data-page="Attendance" onclick="show('Attendance')">
+        📋 Attendance
+      </button>
+
+      <button data-page="Reports" onclick="show('Reports')">
+        📄 Reports
+      </button>
+
+      <button data-page="Performance" onclick="show('Performance')">
+        📊 Performance
+      </button>
+    </div>
+
+
+    <div class="sectiontag">Administration</div>
+
+    <div class="nav">
+      <button data-page="Fees" onclick="show('Fees')">
+        💰 Fees
+      </button>
+
+      <button data-page="Timetable" onclick="show('Timetable')">
+        📅 Timetables
+      </button>
+
+      <button data-page="Subjects" onclick="show('Subjects')">
+        📚 Subjects
+      </button>
+
+      <button data-page="Settings" onclick="show('Settings')">
+        ⚙️ Settings
+      </button>
+    </div>
+
+
+    <div class="sectiontag">System</div>
+
+    <div class="nav">
+      <button onclick="backup()">
+        💾 Backup
+      </button>
+
+      <button onclick="logout()">
+        🚪 Logout
+      </button>
+    </div>
+
+  </aside>
+
+
+  <main class="main">
+
+    <div class="top">
+
+      <div>
+        <h1 id="pageTitle">Dashboard</h1>
+
+        <div id="period" class="small">
+          Current academic period
+        </div>
+
+        <div
+          class="small"
+          style="margin-top:4px;color:#2563eb;font-weight:800"
+        >
+          System Version 3 • Bright colours • Term-aware fees & subjects
+        </div>
+      </div>
+
+
+      <div class="toolbar no-print">
+
+        <button class="light" onclick="backup()">
+          Backup
+        </button>
+
+        <button onclick="window.print()">
+          Print
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div id="content"></div>
+
+  </main>
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div id="modal" class="modal hidden">
+
+  <div class="modalbox" id="modalBody"></div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast" class="toast"></div>
+
+
+<!-- Supabase connection and authentication are handled by app.js. -->
+
+<!-- Existing application logic -->
+<script src="app.js"></script>
+
+</body>
+</html>
