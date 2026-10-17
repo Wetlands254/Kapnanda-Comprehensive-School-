@@ -1,1 +1,213 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapnanda TPAD Assistant</title>
+<style>
+:root{--blue:#124b8b;--green:#16845b;--bg:#f3f6fb;--ink:#172337}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--blue);color:white;padding:22px 16px}
+header h1{margin:0 0 7px;font-size:23px}
+header p{margin:0;font-size:14px}
+nav{display:flex;gap:8px;flex-wrap:wrap;background:#fff;padding:12px;border-bottom:1px solid #ddd}
+button,.btn{background:var(--blue);color:white;border:0;padding:11px 14px;border-radius:7px;font-size:14px;cursor:pointer}
+button.secondary{background:#e5edf7;color:var(--blue)}
+button.green{background:var(--green)}
+main{max-width:950px;margin:18px auto;padding:0 12px}
+.card{background:white;border-radius:12px;padding:18px;margin-bottom:15px;box-shadow:0 2px 8px #14213d0b}
+h2{font-size:19px;margin:0 0 15px;color:var(--blue)}
+h3{font-size:16px;margin-top:20px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #ccd5e0;border-radius:7px;font:inherit;background:white}
+textarea{min-height:85px;resize:vertical}
+.full{grid-column:1/-1}
+.small{font-size:12px;color:#5e6b7e;line-height:1.5}
+.status{padding:10px;background:#eaf7ef;border-radius:7px;color:#17643e;margin-bottom:12px}
+.item{border:1px solid #dce3ec;padding:13px;border-radius:9px;margin:12px 0}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+footer{text-align:center;padding:20px;color:#637083;font-size:12px}
+@media(max-width:580px){.grid{grid-template-columns:1fr}.full{grid-column:auto}header h1{font-size:21px}}
+@media print{nav,.actions,.no-print,footer{display:none!important}body{background:white}.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}main{max-width:none;margin:0}.grid{grid-template-columns:1fr 1fr}input,textarea,select{border:0;padding:3px;appearance:none}}
+</style>
+</head>
+<body>
+<header>
+<h1>Kapnanda TPAD Assistant</h1>
+<p>Teacher Performance Appraisal and Development</p>
+<p style="margin-top:8px">Strive to Excel</p>
+</header>
+
+<nav class="no-print">
+<button onclick="showSection('profile')">Teacher Details</button>
+<button onclick="showSection('appraisal')">Appraisal</button>
+<button onclick="showSection('goals')">Targets & Evidence</button>
+<button onclick="showSection('review')">Review & Print</button>
+</nav>
+
+<main>
+<div class="card">
+<div class="status" id="status">Ready. Complete your details and save your work.</div>
+<p class="small">This is an independent record-keeping assistant, not an official TSC platform. Information is saved in this browser on this device.</p>
+</div>
+
+<form id="tpadForm">
+<section id="profile" class="card">
+<h2>1. Teacher Details</h2>
+<div class="grid">
+<div><label>Teacher's full name</label><input name="teacher" required placeholder="Enter full name"></div>
+<div><label>TSC number</label><input name="tsc" placeholder="Enter TSC number"></div>
+<div><label>School name</label><input name="school" value="Kapnanda Comprehensive School"></div>
+<div><label>Academic year</label><input name="year" value="2026"></div>
+<div><label>Appraisal term</label><select name="term"><option>Term 1</option><option>Term 2</option><option selected>Term 3</option></select></div>
+<div><label>Designation</label><input name="designation" placeholder="e.g. Teacher"></div>
+<div><label>Grade / class taught</label><input name="class" placeholder="e.g. Grade 7"></div>
+<div><label>Learning area / subject</label><input name="subject" placeholder="Enter learning area"></div>
+<div><label>Appraisal start date</label><input name="start" type="date"></div>
+<div><label>Appraisal end date</label><input name="end" type="date"></div>
+</div>
+</section>
+
+<section id="appraisal" class="card" hidden>
+<h2>2. Appraisal Self-Assessment</h2>
+<p class="small">Rate your progress honestly using the scale agreed upon by your school. These ratings are for personal preparation and are not an official TSC scoring formula.</p>
+<div class="grid">
+<div><label>Professional knowledge and practice</label><select name="professional"><option value="">Select rating</option><option>1 - Needs improvement</option><option>2 - Developing</option><option>3 - Meets expectations</option><option>4 - Exceeds expectations</option></select></div>
+<div><label>Lesson planning and preparation</label><select name="planning"><option value="">Select rating</option><option>1 - Needs improvement</option><option>2 - Developing</option><option>3 - Meets expectations</option><option>4 - Exceeds expectations</option></select></div>
+<div><label>Teaching and learning</label><select name="teaching"><option value="">Select rating</option><option>1 - Needs improvement</option><option>2 - Developing</option><option>3 - Meets expectations</option><option>4 - Exceeds expectations</option></select></div>
+<div><label>Assessment and learner feedback</label><select name="assessment"><option value="">Select rating</option><option>1 - Needs improvement</option><option>2 - Developing</option><option>3 - Meets expectations</option><option>4 - Exceeds expectations</option></select></div>
+<div><label>Classroom management</label><select name="management"><option value="">Select rating</option><option>1 - Needs improvement</option><option>2 - Developing</option><option>3 - Meets expectations</option><option>4 - Exceeds expectations</option></select></div>
+<div><label>Professional development</label><select name="development"><option value="">Select rating</option><option>1 - Needs improvement</option><option>2 - Developing</option><option>3 - Meets expectations</option><option>4 - Exceeds expectations</option></select></div>
+<div class="full"><label>Key achievements during this appraisal period</label><textarea name="achievements" placeholder="Describe achievements and learner progress"></textarea></div>
+<div class="full"><label>Challenges encountered</label><textarea name="challenges" placeholder="Describe challenges and their effect on learning"></textarea></div>
+<div class="full"><label>Support required</label><textarea name="support" placeholder="Describe the support or resources needed"></textarea></div>
+</div>
+</section>
+
+<section id="goals" class="card" hidden>
+<h2>3. Targets, Actions and Evidence</h2>
+<div id="targets"></div>
+<div class="actions no-print">
+<button type="button" class="secondary" onclick="addTarget()">+ Add target</button>
+</div>
+<h3>Professional development plan</h3>
+<div class="grid">
+<div class="full"><label>Skills or competencies to improve</label><textarea name="skills"></textarea></div>
+<div class="full"><label>Planned training, mentoring or other action</label><textarea name="training"></textarea></div>
+<div class="full"><label>Expected outcome and timeline</label><textarea name="outcome"></textarea></div>
+</div>
+</section>
+
+<section id="review" class="card" hidden>
+<h2>4. Review and Sign-off</h2>
+<div class="grid">
+<div class="full"><label>Teacher's reflection</label><textarea name="reflection" placeholder="What worked well? What will you improve?"></textarea></div>
+<div class="full"><label>Agreed next steps</label><textarea name="nextsteps"></textarea></div>
+<div><label>Teacher name / confirmation</label><input name="teacherSign"></div>
+<div><label>Reviewer's name</label><input name="reviewer"></div>
+<div><label>Review date</label><input name="reviewDate" type="date"></div>
+<div><label>Follow-up date</label><input name="followup" type="date"></div>
+</div>
+<p class="small">Names entered here are for record preparation only. Obtain the required signatures and complete any official school or TSC appraisal process separately.</p>
+</section>
+
+<div class="card no-print">
+<h2>Save your work</h2>
+<div class="actions">
+<button type="button" class="green" onclick="saveData()">Save on this phone</button>
+<button type="button" onclick="exportData()">Export backup</button>
+<button type="button" class="secondary" onclick="window.print()">Print / Save PDF</button>
+<button type="button" class="secondary" onclick="loadData()">Load saved work</button>
+<button type="button" class="secondary" onclick="clearForm()">Clear form</button>
+</div>
+<p class="small">Browser storage can be lost if site data is cleared or you change browsers/devices. Export a backup regularly. Do not enter sensitive learner information.</p>
+</div>
+</form>
+</main>
+<footer>Kapnanda Comprehensive School · TPAD Assistant · Independent preparation tool</footer>
+
+<script>
+const form=document.getElementById('tpadForm');
+let targetCount=0;
+
+function showSection(id){
+document.querySelectorAll('main section').forEach(s=>s.hidden=true);
+document.getElementById(id).hidden=false;
+window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function addTarget(data={}){
+targetCount++;
+const div=document.createElement('div');
+div.className='item';
+div.innerHTML=`
+<h3>Target ${targetCount}</h3>
+<div class="grid">
+<div class="full"><label>Target / area for improvement</label><textarea data-field="target" placeholder="What do you aim to achieve?"></textarea></div>
+<div><label>Action to be taken</label><textarea data-field="action" placeholder="Steps you will take"></textarea></div>
+<div><label>Timeline</label><input data-field="timeline" placeholder="e.g. By end of term"></div>
+<div><label>Evidence / progress</label><textarea data-field="evidence" placeholder="Evidence of achievement"></textarea></div>
+<div><label>Status</label><select data-field="status"><option>Not started</option><option>In progress</option><option>Completed</option><option>Needs support</option></select></div>
+</div>
+<div class="actions no-print"><button type="button" class="secondary" onclick="this.closest('.item').remove()">Remove target</button></div>`;
+document.getElementById('targets').appendChild(div);
+Object.keys(data).forEach(k=>{const el=div.querySelector('[data-field="'+k+'"]');if(el)el.value=data[k]});
+}
+
+function collectData(){
+const fields={};
+new FormData(form).forEach((v,k)=>fields[k]=v);
+fields.targets=[...document.querySelectorAll('#targets .item')].map(item=>{
+const obj={};item.querySelectorAll('[data-field]').forEach(el=>obj[el.dataset.field]=el.value);return obj;
+});
+return fields;
+}
+
+function applyData(data){
+form.reset();
+document.getElementById('targets').innerHTML='';
+targetCount=0;
+Object.keys(data).forEach(k=>{
+const el=form.elements.namedItem(k);
+if(el && !['targets'].includes(k))el.value=data[k];
+});
+(data.targets||[]).forEach(addTarget);
+if(!data.targets?.length)addTarget();
+}
+
+function saveData(){
+try{
+localStorage.setItem('kapnanda_tpad_record',JSON.stringify(collectData()));
+document.getElementById('status').textContent='Saved on this phone at '+new Date().toLocaleString();
+}catch(e){document.getElementById('status').textContent='Could not save. Please export a backup.'}
+}
+
+function loadData(){
+try{
+const raw=localStorage.getItem('kapnanda_tpad_record');
+if(!raw){document.getElementById('status').textContent='No saved record found on this device.';return}
+applyData(JSON.parse(raw));
+document.getElementById('status').textContent='Saved record loaded.';
+}catch(e){document.getElementById('status').textContent='Could not load saved record.'}
+}
+
+function exportData(){
+const blob=new Blob([JSON.stringify(collectData(),null,2)],{type:'application/json'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');a.href=url;a.download='kapnanda-tpad-backup.json';a.click();URL.revokeObjectURL(url);
+}
+
+function clearForm(){
+if(!confirm('Clear the form? Export a backup first if you need to keep the current record.'))return;
+form.reset();document.getElementById('targets').innerHTML='';targetCount=0;addTarget();
+document.getElementById('status').textContent='Form cleared. Previously saved browser data has not been deleted.';
+}
+
+addTarget();
+</script>
+</body>
+</html>
